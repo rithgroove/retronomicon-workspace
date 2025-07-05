@@ -1,0 +1,2 @@
+
+rm -f -R retronomicon
