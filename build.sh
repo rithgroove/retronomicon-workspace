@@ -2,4 +2,4 @@ mkdir build
 cd build
 cmake ..
 cmake --build .
-cp -R ../asset ./bin/
+cp -R ../retronomicon-platformer-demo/asset ./bin/
