@@ -1,10 +1,14 @@
-add_executable(retronomicon-sandbox
-    sandbox/main.cpp
-    sandbox/test_scene.cpp
+# Executable target
+add_executable(sandbox
+    main.cpp
+    # add other sandbox .cpp files here
 )
 
-target_link_libraries(retronomicon-sandbox PRIVATE retronomicon)
+# Link against the full retronomicon engine
+target_link_libraries(sandbox retronomicon)
 
-target_include_directories(retronomicon-sandbox PRIVATE
-    ${CMAKE_SOURCE_DIR}/include
+# Include the engine's public headers
+target_include_directories(sandbox
+    PRIVATE
+        ${CMAKE_SOURCE_DIR}/retronomicon/include
 )

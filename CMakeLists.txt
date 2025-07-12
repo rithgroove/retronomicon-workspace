@@ -14,7 +14,3 @@ add_subdirectory(retronomicon retronomicon_build)
 
 # Add sandbox project
 add_subdirectory(sandbox)
-
-# Add demos or experiments here in the future
-# add_subdirectory(platformer-demo)
-# add_subdirectory(jrpg-demo)
