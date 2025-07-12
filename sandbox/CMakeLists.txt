@@ -1,3 +1,4 @@
+message(STATUS "==== Processing ${CMAKE_CURRENT_LIST_FILE} ====")
 # Executable target
 add_executable(sandbox
     main.cpp

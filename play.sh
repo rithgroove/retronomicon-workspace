@@ -1,1 +1,1 @@
-./build/bin/retronomicon
+./build/sandbox/sandbox
