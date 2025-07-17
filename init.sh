@@ -1,6 +1,7 @@
 if [ ! -e "retronomicon" ]; then
-    git clone git@github.com:rithgroove/retronomicon.git
+    git clone --recurse-submodules  git@github.com:rithgroove/retronomicon.git
     cd retronomicon
+    git submodule update --init --recursive
     USE_LUA=ON USE_PYTHON=ON  ./init.sh
     cd ..
 elif [ ! -d "retronomicon" ]; then
