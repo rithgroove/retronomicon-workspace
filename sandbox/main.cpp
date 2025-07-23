@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
     splash->addComponent<SceneChangeComponent>("Menu");
 
     // Create MenuScene
-    auto menu = std::make_shared<MenuScene>(engine.getRenderer());
+    auto menu = std::make_shared<MenuScene>();
 
     // Register scenes to engine's SceneManager
     engine.registerScene("Splash", splash);
