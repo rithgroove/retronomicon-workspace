@@ -13,3 +13,14 @@ target_include_directories(sandbox
     PRIVATE
         ${CMAKE_SOURCE_DIR}/retronomicon/include
 )
+
+# Set output directory (if not already set)
+#set(BINARY_OUTPUT_DIR ${CMAKE_BINARY_DIR}/bin)
+
+# Copy assets folder to binary output folder
+#add_custom_command(
+#    TARGET your_game_target POST_BUILD
+#    COMMAND ${CMAKE_COMMAND} -E copy_directory
+#            ${CMAKE_SOURCE_DIR}/asset
+#            ${BINARY_OUTPUT_DIR}/asset
+#)

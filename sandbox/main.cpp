@@ -1,51 +1,43 @@
-#include <iostream>
-#include "retronomicon/lib/math/point.h"
-#include "retronomicon/lib/math/rect.h"
-#include "retronomicon/lib/graphic/window.h"
-using namespace retronomicon::lib::math;
-using retronomicon::lib::graphic::Window;
-int main() {
-    Point pos(10.0f, 20.0f);
-    Rect rect(pos, 100.0f, 50.0f);
+#include <memory>
+#include <SDL.h>
+#include "retronomicon/lib/engine/game_engine.h"
+#include "retronomicon/lib/core/splash_scene.h"
+#include "retronomicon/lib/core/menu_scene.h"
+#include "retronomicon/lib/core/scene_change_system.h"
+#include "retronomicon/lib/core/scene_change_component.h"
 
-    std::cout << pos << "\n";
-    std::cout << rect << std::endl;
+using retronomicon::lib::engine::GameEngine;
+using retronomicon::lib::core::Scene;
+using retronomicon::lib::core::SceneChangeComponent;
+using retronomicon::lib::core::SceneChangeSystem;
+using retronomicon::lib::core::SplashScene;
+using retronomicon::lib::core::MenuScene;
 
-    // Initialize SDL
-    if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-        std::cerr << "SDL INIT failed: "<<SDL_GetError() << std::endl;
+int main(int argc, char* argv[]) {
+    GameEngine engine;
 
-    try {
-        Window window("Retronomicon Sandbox", 800, 600);
-        bool running = true;
-        while (running) {
-            SDL_Event wEvent;   
-            while(SDL_PollEvent(&wEvent)) {
-                switch (wEvent.type) {
-                    case SDL_QUIT:
-                        running = false; 
-                        break;
-                    case SDL_KEYDOWN:
-                        running = false; 
-                        break;
-                    case SDL_MOUSEBUTTONDOWN:   
-                        running = false; 
-                        break;
-                    case SDL_WINDOWEVENT_CLOSE: 
-                        running = false; 
-                        break;
-                    default:
-                        //SDL_Log("Window %d got unknown event %d\n", wEvent.window.windowID, wEvent.window.event);
-                        break;
-                }
-            }
-
-            SDL_Delay(200); // Keep < 500 [ms]
-        }
-    } catch (const std::exception& ex) {
-        std::cerr << "Exception: " << ex.what() << '\n';
+    if (!engine.init("Retronomicon", 800, 600)) {
+        SDL_Log("Failed to initialize GameEngine.");
         return 1;
     }
+
+    // Create SplashScene and attach SceneChangeSystem
+    auto splash = std::make_shared<SplashScene>(engine.getRenderer());
+    splash->addSystem(std::make_unique<SceneChangeSystem>(&engine));
+
+    // Add SceneChangeComponent to the SplashScene entity itself
+    splash->addComponent<SceneChangeComponent>("Menu");
+
+    // Create MenuScene
+    auto menu = std::make_shared<MenuScene>(engine.getRenderer());
+
+    // Register scenes to engine's SceneManager
+    engine.getSceneManager().registerScene("Splash", splash);
+    engine.getSceneManager().registerScene("Menu", menu);
+
+    // Start with SplashScene
+    engine.changeScene("Splash");
+    engine.run();
 
     return 0;
 }
