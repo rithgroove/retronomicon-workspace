@@ -32,8 +32,8 @@ int main(int argc, char* argv[]) {
     auto menu = std::make_shared<MenuScene>(engine.getRenderer());
 
     // Register scenes to engine's SceneManager
-    engine.getSceneManager().registerScene("Splash", splash);
-    engine.getSceneManager().registerScene("Menu", menu);
+    engine.registerScene("Splash", splash);
+    engine.registerScene("Menu", menu);
 
     // Start with SplashScene
     engine.changeScene("Splash");
