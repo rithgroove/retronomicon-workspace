@@ -5,6 +5,7 @@
 #include "retronomicon/lib/core/menu_scene.h"
 #include "retronomicon/lib/core/scene_change_system.h"
 #include "retronomicon/lib/core/scene_change_component.h"
+#include "retronomicon/lib/asset/asset_manager.h"
 
 using retronomicon::lib::engine::GameEngine;
 using retronomicon::lib::core::Scene;
@@ -12,7 +13,7 @@ using retronomicon::lib::core::SceneChangeComponent;
 using retronomicon::lib::core::SceneChangeSystem;
 using retronomicon::lib::core::SplashScene;
 using retronomicon::lib::core::MenuScene;
-
+using retronomicon::lib::asset::AssetManager;
 int main(int argc, char* argv[]) {
     GameEngine engine;
 
@@ -21,8 +22,13 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    //load image
+    auto assetManager = std::make_shared<AssetManager>(engine.getRenderer());
+    auto rawImage = assetManager->loadImage("asset/image/retronomicon_logo.png", "retronomicon_logo");
+
     // Create SplashScene and attach SceneChangeSystem
     auto splash = std::make_shared<SplashScene>(engine.getRenderer());
+    splash->setImage(rawImage->getTexture());
     splash->addSystem(std::make_unique<SceneChangeSystem>(&engine));
 
     // Add SceneChangeComponent to the SplashScene entity itself
@@ -30,7 +36,6 @@ int main(int argc, char* argv[]) {
 
     // Create MenuScene
     auto menu = std::make_shared<MenuScene>();
-
     // Register scenes to engine's SceneManager
     engine.registerScene("Splash", splash);
     engine.registerScene("Menu", menu);
