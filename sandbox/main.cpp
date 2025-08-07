@@ -29,6 +29,7 @@ int main(int argc, char* argv[]) {
     auto rawImage = assetManager->loadImage("asset/image/retronomicon_logo.png", "retronomicon_logo");
     auto bgImage = assetManager->loadImage("asset/image/menu_background.png", "menu_background");
     auto nineSliceImage = assetManager->loadImage("asset/image/space.png", "space");
+    auto font = assetManager->loadFont("asset/font/menu_background.png", "manaspc.ttf",20,false);
 
     // Create SplashScene and attach SceneChangeSystem
     auto splash = std::make_shared<SplashScene>(engine.getRenderer());
@@ -39,9 +40,10 @@ int main(int argc, char* argv[]) {
     splash->addComponent<SceneChangeComponent>("Menu");
 
     // Create MenuScene
-    auto menu = std::make_shared<MenuScene>(bgImage);
+    auto menu = std::make_shared<MenuScene>(bgImage,font);
+    menu->addSystem(std::make_unique<SceneChangeSystem>(&engine));
     menu->addSystem(std::make_unique<RenderSystem>(engine.getRenderer()));
-    menu->createMenu(nineSliceImage);
+    menu->createMenu(nineSliceImage,font);
 
     // Register scenes to engine's SceneManager
     engine.registerScene("Splash", splash);
