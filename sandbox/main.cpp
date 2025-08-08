@@ -7,6 +7,7 @@
 #include "retronomicon/lib/scene/scene_change_component.h"
 #include "retronomicon/lib/asset/asset_manager.h"
 #include "retronomicon/lib/graphic/render_system.h"
+#include <iostream>
 
 using retronomicon::lib::engine::GameEngine;
 using retronomicon::lib::core::Scene;
@@ -24,12 +25,15 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    if (TTF_Init() == -1) {
+        std::cerr << "TTF_Init failed: " << TTF_GetError() << std::endl;
+    }
     //load image
     auto assetManager = std::make_shared<AssetManager>(engine.getRenderer());
     auto rawImage = assetManager->loadImage("asset/image/retronomicon_logo.png", "retronomicon_logo");
     auto bgImage = assetManager->loadImage("asset/image/menu_background.png", "menu_background");
     auto nineSliceImage = assetManager->loadImage("asset/image/space.png", "space");
-    auto font = assetManager->loadFont("asset/font/menu_background.png", "manaspc.ttf",20,false);
+    auto font = assetManager->loadFont("asset/font/manaspc.ttf", "manaspc.ttf",20,false);
 
     // Create SplashScene and attach SceneChangeSystem
     auto splash = std::make_shared<SplashScene>(engine.getRenderer());
