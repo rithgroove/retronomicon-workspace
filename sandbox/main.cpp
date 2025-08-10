@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
     auto font = assetManager->loadFont("asset/font/manaspc.ttf", "manaspc.ttf",20,false);
 
     // Create SplashScene and attach SceneChangeSystem
-    auto splash = std::make_shared<SplashScene>(engine.getRenderer());
+    auto splash = std::make_shared<SplashScene>(engine);
     splash->setImage(rawImage->getTexture());
     splash->addSystem(std::make_unique<SceneChangeSystem>(&engine));
 
