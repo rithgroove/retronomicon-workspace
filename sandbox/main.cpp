@@ -1,8 +1,8 @@
 #include <memory>
 #include <SDL.h>
 #include "retronomicon/lib/engine/game_engine.h"
-#include "retronomicon/lib/scene/splash_scene.h"
-#include "retronomicon/lib/scene/menu_scene.h"
+#include "retronomicon/lib/scene/splash/splash_scene.h"
+#include "retronomicon/lib/scene/menu/menu_scene.h"
 #include "retronomicon/lib/scene/scene_change_system.h"
 #include "retronomicon/lib/scene/scene_change_component.h"
 #include "retronomicon/lib/asset/asset_manager.h"
@@ -13,8 +13,8 @@ using retronomicon::lib::engine::GameEngine;
 using retronomicon::lib::core::Scene;
 using retronomicon::lib::scene::SceneChangeComponent;
 using retronomicon::lib::scene::SceneChangeSystem;
-using retronomicon::lib::scene::SplashScene;
-using retronomicon::lib::scene::MenuScene;
+using retronomicon::lib::scene::splash::SplashScene;
+using retronomicon::lib::scene::menu::MenuScene;
 using retronomicon::lib::asset::AssetManager;
 using retronomicon::lib::graphic::RenderSystem;
 int main(int argc, char* argv[]) {
