@@ -36,12 +36,9 @@ int main(int argc, char* argv[]) {
     auto font = assetManager->loadFont("asset/font/manaspc.ttf", "manaspc.ttf",20,false);
 
     // Create SplashScene and attach SceneChangeSystem
-    auto splash = std::make_shared<SplashScene>(&engine,rawImage);
-    // splash->setImage(rawImage->getTexture());
-    // splash->addSystem(std::make_unique<SceneChangeSystem>(&engine));
-
-    // Add SceneChangeComponent to the SplashScene entity itself
-    // splash->addComponent<SceneChangeComponent>("Menu");
+    auto splash = std::make_shared<SplashScene>(&engine,rawImage,"Splash2");
+    auto splash2 = std::make_shared<SplashScene>(&engine,bgImage,"Splash3");
+    auto splash3 = std::make_shared<SplashScene>(&engine,nineSliceImage,"Menu");
 
     // Create MenuScene
     auto menu = std::make_shared<MenuScene>(bgImage,font);
@@ -51,6 +48,8 @@ int main(int argc, char* argv[]) {
 
     // Register scenes to engine's SceneManager
     engine.registerScene("Splash", splash);
+    engine.registerScene("Splash2", splash2);
+    engine.registerScene("Splash3", splash3);
     engine.registerScene("Menu", menu);
 
     // Start with SplashScene
