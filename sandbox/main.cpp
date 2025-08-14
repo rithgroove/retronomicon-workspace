@@ -31,14 +31,15 @@ int main(int argc, char* argv[]) {
     //load image
     auto assetManager = std::make_shared<AssetManager>(engine.getRenderer());
     auto rawImage = assetManager->loadImage("asset/image/retronomicon_logo.png", "retronomicon_logo");
+    auto npgLogo = assetManager->loadImage("asset/image/npg_logo.png", "npg_logo");
     auto bgImage = assetManager->loadImage("asset/image/menu_background.png", "menu_background");
     auto nineSliceImage = assetManager->loadImage("asset/image/space.png", "space");
     auto font = assetManager->loadFont("asset/font/manaspc.ttf", "manaspc.ttf",20,false);
 
     // Create SplashScene and attach SceneChangeSystem
     auto splash = std::make_shared<SplashScene>(&engine,rawImage,"Splash2");
-    auto splash2 = std::make_shared<SplashScene>(&engine,bgImage,"Splash3");
-    auto splash3 = std::make_shared<SplashScene>(&engine,nineSliceImage,"Menu");
+    auto splash2 = std::make_shared<SplashScene>(&engine,npgLogo,"Menu");
+    // auto splash3 = std::make_shared<SplashScene>(&engine,nineSliceImage,"Menu");
 
     // Create MenuScene
     auto menu = std::make_shared<MenuScene>(bgImage,font);
@@ -49,7 +50,7 @@ int main(int argc, char* argv[]) {
     // Register scenes to engine's SceneManager
     engine.registerScene("Splash", splash);
     engine.registerScene("Splash2", splash2);
-    engine.registerScene("Splash3", splash3);
+    // engine.registerScene("Splash3", splash3);
     engine.registerScene("Menu", menu);
 
     // Start with SplashScene
