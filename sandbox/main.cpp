@@ -42,10 +42,7 @@ int main(int argc, char* argv[]) {
     // auto splash3 = std::make_shared<SplashScene>(&engine,nineSliceImage,"Menu");
 
     // Create MenuScene
-    auto menu = std::make_shared<MenuScene>(&engine,bgImage,font);
-    menu->addSystem(std::make_unique<SceneChangeSystem>(&engine));
-    menu->addSystem(std::make_unique<RenderSystem>(engine.getRenderer()));
-    menu->createMenu(nineSliceImage,font);
+    auto menu = std::make_shared<MenuScene>(&engine,bgImage,nineSliceImage,font);
 
     // Register scenes to engine's SceneManager
     engine.registerScene("Splash", splash);
