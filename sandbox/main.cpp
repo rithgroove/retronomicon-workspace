@@ -36,13 +36,13 @@ int main(int argc, char* argv[]) {
     auto nineSliceImage = assetManager->loadImage("asset/image/space.png", "space");
     auto font = assetManager->loadFont("asset/font/manaspc.ttf", "manaspc.ttf",20,false);
 
-    // Create SplashScene and attach SceneChangeSystem
+    // Create SplashScenes
     auto splash = std::make_shared<SplashScene>(&engine,rawImage,"Splash2");
     auto splash2 = std::make_shared<SplashScene>(&engine,npgLogo,"Menu");
     // auto splash3 = std::make_shared<SplashScene>(&engine,nineSliceImage,"Menu");
 
     // Create MenuScene
-    auto menu = std::make_shared<MenuScene>(bgImage,font);
+    auto menu = std::make_shared<MenuScene>(&engine,bgImage,font);
     menu->addSystem(std::make_unique<SceneChangeSystem>(&engine));
     menu->addSystem(std::make_unique<RenderSystem>(engine.getRenderer()));
     menu->createMenu(nineSliceImage,font);
