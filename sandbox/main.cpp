@@ -7,6 +7,7 @@
 #include "retronomicon/lib/scene/scene_change_component.h"
 #include "retronomicon/lib/asset/asset_manager.h"
 #include "retronomicon/lib/graphic/render_system.h"
+#include "retronomicon/lib/audio/audio_wrapper.h"
 #include <iostream>
 
 using retronomicon::lib::engine::GameEngine;
@@ -17,6 +18,7 @@ using retronomicon::lib::scene::splash::SplashScene;
 using retronomicon::lib::scene::menu::MenuScene;
 using retronomicon::lib::asset::AssetManager;
 using retronomicon::lib::graphic::RenderSystem;
+using retronomicon::lib::audio::AudioWrapper;
 int main(int argc, char* argv[]) {
     GameEngine engine;
 
@@ -28,6 +30,9 @@ int main(int argc, char* argv[]) {
     if (TTF_Init() == -1) {
         std::cerr << "TTF_Init failed: " << TTF_GetError() << std::endl;
     }
+    auto* audio = new AudioWrapper();
+    audio->init();
+
     //load image
     auto assetManager = std::make_shared<AssetManager>(engine.getRenderer());
     auto rawImage = assetManager->loadImage("asset/image/retronomicon_logo.png", "retronomicon_logo");
