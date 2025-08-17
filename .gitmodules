@@ -1,0 +1,3 @@
+[submodule "retronomicon-conversation"]
+	path = retronomicon-conversation
+	url = git@github.com:rithgroove/retronomicon-conversation.git
