@@ -36,6 +36,9 @@ int main(int argc, char* argv[]) {
     auto nineSliceImage = assetManager->loadImage("asset/image/space.png", "space");
     auto font = assetManager->loadFont("asset/font/manaspc.ttf", "manaspc.ttf",20,false);
 
+    // auto music = assetManager->loadMusic("asset/sound/music/background_music.ogg", "background_music", false);
+    auto sfx = assetManager->loadSound("asset/sound/foley/funny_swish.ogg", "swish", false);
+
     // Create SplashScenes
     auto splash = std::make_shared<SplashScene>(&engine,rawImage,"Splash2");
     auto splash2 = std::make_shared<SplashScene>(&engine,npgLogo,"Menu");
