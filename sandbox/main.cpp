@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
     auto nineSliceImage = assetManager->loadImage("asset/image/space.png", "space");
     auto font = assetManager->loadFont("asset/font/manaspc.ttf", "manaspc.ttf",20,false);
 
-    // auto music = assetManager->loadMusic("asset/sound/music/background_music.ogg", "background_music", false);
+    auto music = assetManager->loadMusic("asset/sound/music/background_music.ogg", "background_music", false);
     auto sfx = assetManager->loadSound("asset/sound/foley/funny_swish.ogg", "swish", false);
 
     // Create SplashScenes
@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
     // auto splash3 = std::make_shared<SplashScene>(&engine,nineSliceImage,"Menu");
 
     // Create MenuScene
-    auto menu = std::make_shared<MenuScene>(&engine,bgImage,nineSliceImage,font);
+    auto menu = std::make_shared<MenuScene>(&engine,bgImage,nineSliceImage,font,music,sfx);
 
     // Register scenes to engine's SceneManager
     engine.registerScene("Splash", splash);
