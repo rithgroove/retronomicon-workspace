@@ -13,5 +13,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Assumes retronomicon is a submodule or sibling directory
 add_subdirectory(retronomicon retronomicon_build)
 
+add_subdirectory(retronomicon-conversation retronomicon_conversation_build)
+
 # Add sandbox project
 add_subdirectory(sandbox)
