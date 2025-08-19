@@ -41,7 +41,6 @@
 *.dwo
 
 retronomicon/
-retronomicon-platformer/
 retronomicon-platformer-demo/
 build/
 build-arkos/
