@@ -6,7 +6,7 @@ add_executable(sandbox
 )
 
 # Link against the full retronomicon engine
-target_link_libraries(sandbox retronomicon)
+target_link_libraries(sandbox retronomicon retronomicon-conversation)
 
 # Include the engine's public headers
 target_include_directories(sandbox
