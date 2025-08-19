@@ -21,3 +21,5 @@ else
     git pull
     cd ..
 fi
+
+git submodule update --init --recursive
