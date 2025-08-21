@@ -1,26 +1,33 @@
 message(STATUS "==== Processing ${CMAKE_CURRENT_LIST_FILE} ====")
-# Executable target
+
 add_executable(sandbox
     main.cpp
-    # add other sandbox .cpp files here
+    # Add other sandbox .cpp files here
 )
 
-# Link against the full retronomicon engine
-target_link_libraries(sandbox retronomicon retronomicon-conversation)
+# Link against engine and conversation lib
+target_link_libraries(sandbox
+    PRIVATE
+        retronomicon
+        retronomicon-conversation
+)
 
-# Include the engine's public headers
+# Engine include dirs (public ones will be inherited anyway if retronomicon sets them)
 target_include_directories(sandbox
     PRIVATE
         ${CMAKE_SOURCE_DIR}/retronomicon/include
+        ${CMAKE_SOURCE_DIR}/retronomicon-conversation/include
 )
 
-# Set output directory (if not already set)
-#set(BINARY_OUTPUT_DIR ${CMAKE_BINARY_DIR}/bin)
+# Set output dir for executables (optional)
+set_target_properties(sandbox PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+)
 
-# Copy assets folder to binary output folder
-#add_custom_command(
-#    TARGET your_game_target POST_BUILD
-#    COMMAND ${CMAKE_COMMAND} -E copy_directory
-#            ${CMAKE_SOURCE_DIR}/asset
-#            ${BINARY_OUTPUT_DIR}/asset
-#)
+# Example: Copy assets folder into build/bin/assets after build
+add_custom_command(
+    TARGET sandbox POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            ${CMAKE_SOURCE_DIR}/asset
+            $<TARGET_FILE_DIR:sandbox>/asset
+)

@@ -1,19 +1,18 @@
-message(STATUS "==== Processing ${CMAKE_CURRENT_LIST_FILE} ====")
 cmake_minimum_required(VERSION 3.10)
-project(retronomicon-workspace)
+project(retronomicon-workspace LANGUAGES CXX)
 
-# Enable C++17 or later
+message(STATUS "==== Processing ${CMAKE_CURRENT_LIST_FILE} ====")
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Optionally enable debug flags
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# External library: retronomicon engine
-# Assumes retronomicon is a submodule or sibling directory
+# Build retronomicon base engine
 add_subdirectory(retronomicon retronomicon_build)
 
+# Build conversation module (depends on retronomicon)
 add_subdirectory(retronomicon-conversation retronomicon_conversation_build)
 
-# Add sandbox project
+# Build sandbox test project
 add_subdirectory(sandbox)

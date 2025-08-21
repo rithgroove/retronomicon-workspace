@@ -17,10 +17,10 @@ int main() {
         if (!node->choices.empty()) {
             std::cout << "Choices:\n" <<std::endl;
             for (size_t i = 0; i < node->choices.size(); ++i) {
-                std::cout << "  " << i << ") " << node->choices[i].text << "\n";
+                std::cout << "  " << i << ") " << node->choices[i].getText() << "\n";
             }
             // Auto-pick first choice for testing
-            scene->setCurrentNode(node->choices[0].next);
+            scene->setCurrentNode(node->choices[0].getNext());
         } else if (node->next.has_value()) {
             scene->setCurrentNode(node->next.value());
         } else {
