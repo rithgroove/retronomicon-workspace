@@ -4,3 +4,6 @@
 [submodule "retronomicon-platformer"]
 	path = retronomicon-platformer
 	url = git@github.com:rithgroove/retronomicon-platformer.git
+[submodule "retronomicon"]
+	path = retronomicon
+	url = git@github.com:rithgroove/retronomicon.git

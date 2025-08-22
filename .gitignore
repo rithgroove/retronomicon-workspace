@@ -40,6 +40,5 @@
 # debug information files
 *.dwo
 
-retronomicon/
 build/
 build-arkos/
