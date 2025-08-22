@@ -24,7 +24,14 @@
       "speaker": "Hero",
       "expression": "happy",
       "text": "Thanks, I'll take one!",
-      "actions": ["add_item:bread"],
+      "actions": [
+        {
+          "type" : "add_item",
+          "target" :"inventory",
+          "value" : "bread",
+          "duration" : -1.0
+        }
+      ],
       "next": "elder"
     },
     "market_skip": {
