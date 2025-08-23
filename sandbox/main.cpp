@@ -12,17 +12,21 @@ int main() {
 
     auto* node = scene->getCurrentNode();
     while (node) {
-        std::cout << node->speaker << " (" << node->expression << "): " << node->text << "\n";
+        std::cout 
+            << node->getSpeaker() 
+            << " (" << node->getExpression() << "): " 
+            << node->getText() << "\n";
 
-        if (!node->choices.empty()) {
-            std::cout << "Choices:\n" <<std::endl;
-            for (size_t i = 0; i < node->choices.size(); ++i) {
-                std::cout << "  " << i << ") " << node->choices[i].getText() << "\n";
+        const auto& choices = node->getChoices();
+        if (!choices.empty()) {
+            std::cout << "Choices:\n" << std::endl;
+            for (size_t i = 0; i < choices.size(); ++i) {
+                std::cout << "  " << i << ") " << choices[i].getText() << "\n";
             }
             // Auto-pick first choice for testing
-            scene->setCurrentNode(node->choices[0].getNext());
-        } else if (node->next.has_value()) {
-            scene->setCurrentNode(node->next.value());
+            scene->setCurrentNode(choices[0].getNext());
+        } else if (node->getNext().has_value()) {
+            scene->setCurrentNode(node->getNext().value());
         } else {
             break; // End
         }
