@@ -1,25 +1,3 @@
-if [ ! -e "retronomicon" ]; then
-    git clone --recurse-submodules  git@github.com:rithgroove/retronomicon.git
-    cd retronomicon
-    git submodule update --init --recursive
-    USE_LUA=ON USE_PYTHON=ON  ./init.sh
-    cd ..
-elif [ ! -d "retronomicon" ]; then
-    echo "retronomicon already exists but is not a directory" 
-else
-    cd retronomicon
-    git pull
-    cd ..
-fi
-
-if [ ! -e "retronomicon-platformer-demo" ]; then
-    git clone git@github.com:rithgroove/retronomicon-platformer-demo.git
-elif [ ! -d "retronomicon-platformer-demo" ]; then
-    echo "retronomicon-platformer-demo already exists but is not a directory" 
-else
-    cd retronomicon-platformer-demo
-    git pull
-    cd ..
-fi
-
 git submodule update --init --recursive
+
+sudo apt-get install libfreetype6-dev
