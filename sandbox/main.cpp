@@ -8,6 +8,7 @@
 #include "retronomicon/lib/asset/asset_manager.h"
 #include "retronomicon/lib/graphic/render_system.h"
 #include "retronomicon/lib/audio/audio_wrapper.h"
+#include "retronomicon/lib/conversation/conversation_loader.h"
 #include <iostream>
 
 using retronomicon::lib::engine::GameEngine;
@@ -40,6 +41,7 @@ int main(int argc, char* argv[]) {
     auto bgImage = assetManager->loadImage("asset/image/menu_background.png", "menu_background");
     auto nineSliceImage = assetManager->loadImage("asset/image/space.png", "space");
     auto font = assetManager->loadFont("asset/font/manaspc.ttf", "manaspc.ttf",20,false);
+    auto conversation = assetManager->loadText("asset/conversation/conversation.json","new_game_conversation",false);
 
     auto music = assetManager->loadMusic("asset/sound/music/background_music.ogg", "background_music", false);
     auto sfx = assetManager->loadSound("asset/sound/foley/funny_swish.ogg", "swish", false);
@@ -48,6 +50,7 @@ int main(int argc, char* argv[]) {
     auto splash = std::make_shared<SplashScene>(&engine,rawImage,"Splash2");
     auto splash2 = std::make_shared<SplashScene>(&engine,npgLogo,"Menu");
     // auto splash3 = std::make_shared<SplashScene>(&engine,nineSliceImage,"Menu");
+    auto conv_scene = retronomicon::lib::conversation::ConversationLoader::loadFromTextAsset(conversation);
 
     // Create MenuScene
     auto menu = std::make_shared<MenuScene>(&engine,bgImage,nineSliceImage,font,music,sfx);
@@ -57,6 +60,7 @@ int main(int argc, char* argv[]) {
     engine.registerScene("Splash2", splash2);
     // engine.registerScene("Splash3", splash3);
     engine.registerScene("Menu", menu);
+    engine.registerScene("New Game", conv_scene);
 
     // Start with SplashScene
     engine.changeScene("Splash");
