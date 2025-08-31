@@ -35,21 +35,14 @@ int main(int argc, char* argv[]) {
     audio->init();
 
     //load image
-    auto assetManager = std::make_shared<AssetManager>(engine.getRenderer());
-    auto rawImage = assetManager->loadImage("asset/image/retronomicon_logo.png", "retronomicon_logo");
-    auto npgLogo = assetManager->loadImage("asset/image/npg_logo.png", "npg_logo");
-    auto bgImage = assetManager->loadImage("asset/image/menu_background.png", "menu_background");
-    auto nineSliceImage = assetManager->loadImage("asset/image/space.png", "space");
+    auto assetManager = engine.getAssetManager();
     auto nineSliceImage2 = assetManager->loadImage("asset/image/space2.png", "space2");
     auto font = assetManager->loadFont("asset/font/manaspc.ttf", "manaspc.ttf",20,false);
     auto conversation = assetManager->loadText("asset/conversation/conversation.json","new_game_conversation",false);
 
-    auto music = assetManager->loadMusic("asset/sound/music/background_music.ogg", "background_music", false);
-    auto sfx = assetManager->loadSound("asset/sound/foley/funny_swish.ogg", "swish", false);
-
     // Create SplashScenes
-    auto splash = std::make_shared<SplashScene>(&engine,rawImage,"Splash2");
-    auto splash2 = std::make_shared<SplashScene>(&engine,npgLogo,"Menu");
+    auto splash = std::make_shared<SplashScene>(&engine,"asset/image/retronomicon_logo.png", "retronomicon_logo","Splash2");
+    auto splash2 = std::make_shared<SplashScene>(&engine,"asset/image/npg_logo.png", "npg_logo","Menu");
     // auto splash3 = std::make_shared<SplashScene>(&engine,nineSliceImage,"Menu");
     auto conv_scene = retronomicon::lib::conversation::ConversationLoader::loadFromTextAsset(conversation);
     conv_scene->m_font = font;
@@ -57,7 +50,7 @@ int main(int argc, char* argv[]) {
     conv_scene->m_engine = &engine;
 
     // Create MenuScene
-    auto menu = std::make_shared<MenuScene>(&engine,bgImage,nineSliceImage,font,music,sfx);
+    auto menu = std::make_shared<MenuScene>(&engine,"asset/image/menu_background.png","asset/image/space.png","asset/font/manaspc.ttf",16,"asset/sound/music/background_music.ogg","asset/sound/foley/funny_swish.ogg");
 
     // Register scenes to engine's SceneManager
     engine.registerScene("Splash", splash);

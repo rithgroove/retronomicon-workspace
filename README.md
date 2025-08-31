@@ -24,4 +24,5 @@ run init.sh
 - [Sound] Funny Swish (funny-swish-101878.mp3) by Freesound Community [Link](https://pixabay.com/sound-effects/funny-swish-101878/)
 - [Sound] Background Music (best-background-music-no-copyright-244084.mp3) by DesiFreeMusic [Link](https://pixabay.com/music/beats-best-background-music-no-copyright-244084/)
 - [UI] 9 Slice menu asset by Kenney [Link](https://www.kenney.nl/assets/pixel-ui-pack)
+- [Background] Free Visual Novel Background By Potato Master [Link](https://potat0master.itch.io/free-visual-novel-backgrounds-school-mini-pack-1)
 - Special thanks to Dov Grobgeld [dov](https://github.com/dov) for his example repository. 

@@ -1,7 +1,12 @@
 {
+  "background":{
+    "office-door" :"asset/image/office_door.png",
+    "rooftop" :"asset/image/rooftop.png"
+  },
   "nodes": {
     "start": {
       "speaker": "Hero",
+      "background" : "office-door",
       "expression": "neutral",
       "text": "Another long day... I should check in with the villagers.",
       "choices": [
