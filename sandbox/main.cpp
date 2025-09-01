@@ -36,8 +36,6 @@ int main(int argc, char* argv[]) {
 
     //load image
     auto assetManager = engine.getAssetManager();
-    auto nineSliceImage2 = assetManager->loadImage("asset/image/space2.png", "space2");
-    auto font = assetManager->loadFont("asset/font/manaspc.ttf", "manaspc.ttf",20,false);
     auto conversation = assetManager->loadText("asset/conversation/conversation.json","new_game_conversation",false);
 
     // Create SplashScenes
@@ -45,9 +43,9 @@ int main(int argc, char* argv[]) {
     auto splash2 = std::make_shared<SplashScene>(&engine,"asset/image/npg_logo.png", "npg_logo","Menu");
     // auto splash3 = std::make_shared<SplashScene>(&engine,nineSliceImage,"Menu");
     auto conv_scene = retronomicon::lib::conversation::ConversationLoader::loadFromTextAsset(conversation);
-    conv_scene->m_font = font;
-    conv_scene->m_nineSliceImage = nineSliceImage2;
-    conv_scene->m_engine = &engine;
+    conv_scene->setEngine(&engine);
+    conv_scene->changeFont("asset/font/manaspc.ttf", "manaspc.ttf",20);
+    conv_scene->setTextBoxBackground("asset/image/space2.png", "space2");
 
     // Create MenuScene
     auto menu = std::make_shared<MenuScene>(&engine,"asset/image/menu_background.png","asset/image/space.png","asset/font/manaspc.ttf",16,"asset/sound/music/background_music.ogg","asset/sound/foley/funny_swish.ogg");
