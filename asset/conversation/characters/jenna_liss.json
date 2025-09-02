@@ -1,0 +1,67 @@
+{
+    "id": "jenna",
+    "name": "Jenna Liss",
+    "displayName": "Jenna",
+    "description": "Jenna Liss, a reporter with a heart of steel, fiery passion, and eyes that shine like stars, is always on the lookout for the next big scoop, determined to report the truth to the citizens of Futuropia!",
+    "sprites": {
+        "files": [
+            {
+                "path": "asset/tachi/reporter.png",
+                "name": "jenna_liss1",
+                "width": 512,
+                "height": 768
+            },
+            {
+                "path": "asset/tachi/reporter.png",
+                "name": "jenna_liss2",
+                "width": 512,
+                "height": 768
+            }
+        ],
+        "expression": [
+            {
+                "name": "default",
+                "asset_name": "jenna_liss1",
+                "asset_x_pos": 2,
+                "asset_y_pos": 0
+            },
+            {
+                "name": "serious",
+                "asset_name": "jenna_liss1",
+                "asset_x_pos": 1,
+                "asset_y_pos": 0
+            },
+            {
+                "name": "happy",
+                "asset_name": "jenna_liss2",
+                "asset_x_pos": 3,
+                "asset_y_pos": 0
+            },
+            {
+                "name": "angry",
+                "asset_name": "jenna_liss2",
+                "asset_x_pos": 4,
+                "asset_y_pos": 0
+            },
+            {
+                "name": "asking",
+                "asset_name": "jenna_liss",
+                "asset_x_pos": 0,
+                "asset_y_pos": 0
+            }
+        ]
+    },
+    "voice": {
+        "voiceActor": "Real Lia",
+        "clips": {
+            "greeting": "asset/sound/folley/funny_swish.ogg"
+        }
+    },
+    "meta": {
+        "firstAppearanceScene": "intro_scene",
+        "tags": [
+            "main",
+            "friend"
+        ]
+    }
+}
