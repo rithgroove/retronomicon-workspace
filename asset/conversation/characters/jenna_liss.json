@@ -1,9 +1,9 @@
 {
     "id": "jenna",
     "name": "Jenna Liss",
+    "displayName": "Jenna",
     "description": "Jenna Liss, a reporter with a heart of steel, fiery passion, and eyes that shine like stars, is always on the lookout for the next big scoop, determined to report the truth to the citizens of Futuropia!",
     "retronomicon-conversation" : {
-        "displayName": "Jenna",
         "sprites": {
             "files": [
                 {
