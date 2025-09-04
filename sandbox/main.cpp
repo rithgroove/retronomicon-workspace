@@ -7,6 +7,7 @@
 #include "retronomicon/lib/scene/scene_change_component.h"
 #include "retronomicon/lib/asset/asset_manager.h"
 #include "retronomicon/lib/graphic/render_system.h"
+#include "retronomicon/lib/conversation/asset/conversation_character_module_loader.h"
 #include "retronomicon/lib/audio/audio_wrapper.h"
 #include "retronomicon/lib/conversation/conversation_loader.h"
 #include <iostream>
@@ -20,6 +21,7 @@ using retronomicon::lib::scene::menu::MenuScene;
 using retronomicon::lib::asset::AssetManager;
 using retronomicon::lib::graphic::RenderSystem;
 using retronomicon::lib::audio::AudioWrapper;
+using retronomicon::lib::conversation::asset::ConversationCharacterModuleLoader;
 int main(int argc, char* argv[]) {
     GameEngine engine;
 
@@ -27,6 +29,9 @@ int main(int argc, char* argv[]) {
         SDL_Log("Failed to initialize GameEngine.");
         return 1;
     }
+
+    engine.registerCharacterLoaderModule(std::make_shared<ConversationCharacterModuleLoader>());
+    engine.loadCharacterDb("asset/conversation/characters.json");
 
     if (TTF_Init() == -1) {
         std::cerr << "TTF_Init failed: " << TTF_GetError() << std::endl;

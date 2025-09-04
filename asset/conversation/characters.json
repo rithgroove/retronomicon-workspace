@@ -2,7 +2,7 @@
     "characters": [
         {
             "id": "jenna",
-            "file": "assets/conversation/characters/jenna_liss.json"
+            "file": "asset/conversation/characters/jenna_liss.json"
         }
     ]
 }
