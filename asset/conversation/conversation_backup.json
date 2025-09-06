@@ -1,0 +1,83 @@
+{
+  "background":{
+    "office-door" :"asset/image/office_door.png",
+    "rooftop" :"asset/image/rooftop.png"
+  },
+  "nodes": {
+    "start": {
+      "speaker": "Hero",
+      "background" : "office-door",
+      "expression": "neutral",
+      "text": "Another long day... I should check in with the student.",
+      "choices": [
+        { "text": "Go to the market", "next": "market" },
+        { "text": "Visit the elder", "next": "elder" },
+        { "text": "Head straight home", "next": "home" }
+      ]
+    },
+
+    "market": {
+      "speaker": "Merchant",
+      "expression": "smile",
+      "text": "Ah, Hero! Fresh bread today, just for you.",
+      "choices": [
+        { "text": "Buy bread", "next": "market_buy" },
+        { "text": "Not today", "next": "market_skip" }
+      ]
+    },
+    "market_buy": {
+      "speaker": "Hero",
+      "expression": "happy",
+      "text": "Thanks, I'll take one!",
+      "actions": [
+        {
+          "type" : "add_item",
+          "target" :"inventory",
+          "value" : "bread",
+          "duration" : -1.0
+        }
+      ],
+      "next": "elder"
+    },
+    "market_skip": {
+      "speaker": "Hero",
+      "expression": "neutral",
+      "text": "Sorry, maybe later.",
+      "next": "elder"
+    },
+
+    "elder": {
+      "speaker": "Elder",
+      "expression": "serious",
+      "text": "Hero, dark clouds gather at the mountain peak. We must prepare.",
+      "choices": [
+        { "text": "Ask for details", "next": "elder_detail" },
+        { "text": "Nod silently", "next": "elder_end" }
+      ]
+    },
+    "elder_detail": {
+      "speaker": "Elder",
+      "expression": "worried",
+      "text": "I fear the dragon will awaken. You must be ready.",
+      "next": "elder_end"
+    },
+    "elder_end": {
+      "speaker": "Hero",
+      "expression": "determined",
+      "text": "I’ll do what I can.",
+      "next": "home"
+    },
+    "home": {
+      "speaker": "Hero",
+      "expression": "tired",
+      "text": "Finally... I’m home. Time to rest.",
+      "next": "dream"
+    },
+    "dream": {
+      "speaker": "???",
+      "expression": "ominous",
+      "text": "You cannot run from destiny, Hero...",
+      "next": null
+    }
+  }
+}
