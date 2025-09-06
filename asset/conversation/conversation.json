@@ -8,7 +8,7 @@
       "speaker": "Hero",
       "background" : "office-door",
       "expression": "neutral",
-      "text": "Another long day... I should check in with the Student.",
+      "text": "Another long day... I should check in with the elder.",
       "choices": [
         { "text": "Go to the market", "next": "market" },
         { "text": "Visit the elder", "next": "elder" },
