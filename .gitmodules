@@ -7,3 +7,6 @@
 [submodule "retronomicon"]
 	path = retronomicon
 	url = git@github.com:rithgroove/retronomicon.git
+[submodule "retronomicon-card-battle"]
+	path = retronomicon-card-battle
+	url = git@github.com:rithgroove/retronomicon-card-battle.git
