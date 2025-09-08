@@ -14,5 +14,8 @@ add_subdirectory(retronomicon retronomicon_build)
 # Build conversation module (depends on retronomicon)
 add_subdirectory(retronomicon-conversation retronomicon_conversation_build)
 
+# Build conversation module (depends on retronomicon)
+add_subdirectory(retronomicon-card-battle retronomicon_card_battle_build)
+
 # Build sandbox test project
 add_subdirectory(sandbox)

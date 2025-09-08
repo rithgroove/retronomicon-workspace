@@ -9,10 +9,10 @@ add_executable(sandbox
 target_link_libraries(sandbox retronomicon retronomicon-conversation)
 
 # Include the engine's public headers
-target_include_directories(sandbox
-    PRIVATE
-        ${CMAKE_SOURCE_DIR}/retronomicon/include
-)
+#target_include_directories(sandbox
+#    PRIVATE
+#        ${CMAKE_SOURCE_DIR}/retronomicon/include
+#)
 
 # Set output directory (if not already set)
 #set(BINARY_OUTPUT_DIR ${CMAKE_BINARY_DIR}/bin)
