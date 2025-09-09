@@ -1,0 +1,48 @@
+{
+  "cards": [
+    {
+      "id": "strike",
+      "type": "action",
+      "name": "Strike",
+      "image": "assets/cards/strike.png",
+      "cost": { "Stamina": 1 },
+      "damage": 3,
+      "effectScript": "scripts/effects/strike.lua"
+    },
+    {
+      "id": "guard_break",
+      "type": "action",
+      "name": "Guard Break",
+      "image": "assets/cards/guard_break.png",
+      "cost": { "Stamina": 2 },
+      "damage": 2,
+      "effectScript": "scripts/effects/guard_break.lua"
+    },
+    {
+      "id": "stunning_blow",
+      "type": "action",
+      "name": "Stunning Blow",
+      "image": "assets/cards/stunning_blow.png",
+      "cost": { "Stamina": 2 },
+      "damage": 1,
+      "effectScript": "scripts/effects/stunning_blow.lua"
+    },
+    {
+      "id": "adrenaline_slash",
+      "type": "action",
+      "name": "Adrenaline Slash",
+      "image": "assets/cards/adrenaline_slash.png",
+      "cost": { "Stamina": 3 },
+      "damage": 5,
+      "effectScript": "scripts/effects/adrenaline_slash.lua"
+    },
+    {
+      "id": "stamina",
+      "type": "resource",
+      "name": "Stamina",
+      "image": "assets/cards/stamina.png",
+      "value": { "Stamina": 1 },
+      "effectScript": "scripts/effects/stamina.lua"
+    }
+  ]
+}
