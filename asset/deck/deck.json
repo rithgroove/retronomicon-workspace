@@ -1,0 +1,12 @@
+{
+  "deck": {
+    "name": "Starter Fighter Deck",
+    "cards": [
+      { "id": "strike", "count": 4 },
+      { "id": "guard_break", "count": 2 },
+      { "id": "stunning_blow", "count": 2 },
+      { "id": "adrenaline_slash", "count": 1 },
+      { "id": "stamina", "count": 10 }
+    ]
+  }
+}
