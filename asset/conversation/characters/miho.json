@@ -1,0 +1,63 @@
+{
+    "id": "miho",
+    "name": "Miho, the 31st Hero",
+    "displayName": "Miho",
+    "description": "Miho was a hero in training with her sister, Killa before she was chosen as the 31st Hero by the citizen of Futuropia. She and her twin sister Killa are both candidates for the 31st Hero, but due to the accident that permanently injures Killa, Miho is the one who becomes the new Hero. Since then, her relationship with her sister has been distant as her sister left their home. 1 year later, She met Killa once again, but not as her beloved sister, but as a villain who treated the Futuropia. Now with her iron fist of justice, she need to defend Futuropia not only from the Villain, but also from her sister.",
+    "retronomicon-conversation" : {
+        "sprite": {
+            "filepath": "asset/tachi/reporter.png",
+            "asset_name" :"jenna_liss",
+            "width": 512,
+            "height": 630,
+            "expression": [
+                {
+                    "name": "default",
+                    "asset_x_pos": 2,
+                    "asset_y_pos": 0
+                },
+                {
+                    "name": "serious",
+                    "asset_x_pos": 1,
+                    "asset_y_pos": 0
+                },
+                {
+                    "name": "happy",
+                    "asset_x_pos": 3,
+                    "asset_y_pos": 0
+                },
+                {
+                    "name": "angry",
+                    "asset_x_pos": 4,
+                    "asset_y_pos": 0
+                },
+                {
+                    "name": "asking",
+                    "asset_x_pos": 0,
+                    "asset_y_pos": 0
+                }
+            ]
+        },
+        "voice": {
+            "voiceActor": "None",
+            "clips": {
+                "greeting": "asset/sound/folley/funny_swish.ogg"
+            }
+        },
+        "meta": {
+            "firstAppearanceScene": "intro_scene",
+            "tags": [
+                "main",
+                "friend"
+            ]
+        }
+    },
+    "retronomicon-card-battle": {
+        "stats": {
+          "hp": 100,
+          "default-deck" : "fighter-deck"
+        },
+        "class": "fighter"
+    }
+
+    
+}

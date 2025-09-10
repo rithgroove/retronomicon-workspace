@@ -1,5 +1,6 @@
 {
   "deck": {
+    "id" : "s",
     "name": "Starter Fighter Deck",
     "cards": [
       { "id": "strike", "count": 4 },
