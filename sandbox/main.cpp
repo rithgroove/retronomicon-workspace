@@ -27,12 +27,13 @@ using retronomicon::lib::cardBattle::data::CardDatabase;
 int main(int argc, char* argv[]) {
     GameEngine engine;
     CardDatabase cardDB;
-    cardDB.loadFromFile("asset/card/cards.json");
 
     if (!engine.init("Retronomicon", 800, 600)) {
         SDL_Log("Failed to initialize GameEngine.");
         return 1;
     }
+    cardDB.setAssetManager(engine.getAssetManager());
+    cardDB.loadFromFile("asset/card/cards.json");
 
     engine.registerCharacterLoaderModule(std::make_shared<ConversationCharacterModuleLoader>());
     engine.loadCharacterDb("asset/conversation/characters.json");
