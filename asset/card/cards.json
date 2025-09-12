@@ -6,7 +6,7 @@
       "name": "Strike",
       "image": "assets/cards/strike.png",
       "cost": { "Stamina": 1 },
-      "damage": 3,
+      "damage": 1,
       "effectScript": "scripts/effects/strike.lua"
     },
     {
@@ -15,7 +15,7 @@
       "name": "Guard Break",
       "image": "assets/cards/guard_break.png",
       "cost": { "Stamina": 2 },
-      "damage": 2,
+      "damage": 3,
       "effectScript": "scripts/effects/guard_break.lua"
     },
     {
@@ -24,7 +24,7 @@
       "name": "Stunning Blow",
       "image": "assets/cards/stunning_blow.png",
       "cost": { "Stamina": 2 },
-      "damage": 1,
+      "damage": 5,
       "effectScript": "scripts/effects/stunning_blow.lua"
     },
     {
@@ -37,11 +37,11 @@
       "effectScript": "scripts/effects/adrenaline_slash.lua"
     },
     {
-      "id": "stamina",
-      "type": "resource",
+      "id": "guard",
+      "type": "reaction",
       "name": "Stamina",
-      "image": "assets/cards/stamina.png",
-      "value": { "Stamina": 1 },
+      "image": "assets/cards/guard.png",
+      "cost": { "Stamina": 1 },
       "effectScript": "scripts/effects/stamina.lua"
     }
   ]

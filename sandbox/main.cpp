@@ -10,6 +10,7 @@
 #include "retronomicon/lib/conversation/asset/conversation_character_module_loader.h"
 #include "retronomicon/lib/audio/audio_wrapper.h"
 #include "retronomicon/lib/conversation/conversation_loader.h"
+#include "retronomicon/lib/card-battle/data/card_database.h"
 #include <iostream>
 
 using retronomicon::lib::engine::GameEngine;
@@ -22,8 +23,11 @@ using retronomicon::lib::asset::AssetManager;
 using retronomicon::lib::graphic::RenderSystem;
 using retronomicon::lib::audio::AudioWrapper;
 using retronomicon::lib::conversation::asset::ConversationCharacterModuleLoader;
+using retronomicon::lib::cardBattle::data::CardDatabase;
 int main(int argc, char* argv[]) {
     GameEngine engine;
+    CardDatabase cardDB;
+    cardDB.loadFromFile("asset/card/cards.json");
 
     if (!engine.init("Retronomicon", 800, 600)) {
         SDL_Log("Failed to initialize GameEngine.");
@@ -38,6 +42,8 @@ int main(int argc, char* argv[]) {
     }
     auto* audio = new AudioWrapper();
     audio->init();
+
+
 
     //load image
     auto assetManager = engine.getAssetManager();
