@@ -4,45 +4,45 @@
       "id": "strike",
       "type": "action",
       "name": "Strike",
-      "image": "assets/cards/strike.png",
+      "image": "asset/card/image/strike.png",
       "cost": { "Stamina": 1 },
       "damage": 1,
-      "effectScript": "scripts/effects/strike.lua"
+      "effectScript": "asset/card/card_script/do_nothing.lua"
     },
     {
       "id": "guard_break",
       "type": "action",
       "name": "Guard Break",
-      "image": "assets/cards/guard_break.png",
+      "image": "asset/card/image/strike.png",
       "cost": { "Stamina": 2 },
       "damage": 3,
-      "effectScript": "scripts/effects/guard_break.lua"
+      "effectScript": "asset/card/card_script/do_nothing.lua"
     },
     {
       "id": "stunning_blow",
       "type": "action",
       "name": "Stunning Blow",
-      "image": "assets/cards/stunning_blow.png",
+      "image": "asset/card/image/strike.png",
       "cost": { "Stamina": 2 },
       "damage": 5,
-      "effectScript": "scripts/effects/stunning_blow.lua"
+      "effectScript": "asset/card/card_script/do_nothing.lua"
     },
     {
       "id": "adrenaline_slash",
       "type": "action",
       "name": "Adrenaline Slash",
-      "image": "assets/cards/adrenaline_slash.png",
+      "image": "asset/card/image/strike.png",
       "cost": { "Stamina": 3 },
       "damage": 5,
-      "effectScript": "scripts/effects/adrenaline_slash.lua"
+      "effectScript": "asset/card/card_script/do_nothing.lua"
     },
     {
       "id": "guard",
       "type": "reaction",
       "name": "Stamina",
-      "image": "assets/cards/guard.png",
+      "image": "asset/card/image/strike.png",
       "cost": { "Stamina": 1 },
-      "effectScript": "scripts/effects/stamina.lua"
+      "effectScript": "asset/card/card_script/do_nothing.lua"
     }
   ]
 }
