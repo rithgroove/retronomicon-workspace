@@ -16,6 +16,18 @@ Currently main branch is focused on developing retronomicon-platformer (The plat
 run init.sh
 ```
 
+## Build
+
+```
+run build-sandbox.sh
+```
+
+## Run
+
+```
+run play.sh
+```
+
 # Credits:
 
 - [Font] Manaspace from Cody Boisclair "codeman38" [Link](https://www.zone38.net/font/)
