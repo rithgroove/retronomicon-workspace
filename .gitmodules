@@ -10,3 +10,6 @@
 [submodule "retronomicon-card-battle"]
 	path = retronomicon-card-battle
 	url = git@github.com:rithgroove/retronomicon-card-battle.git
+[submodule "retronomicon-sdl"]
+	path = retronomicon-sdl
+	url = git@github.com:rithgroove/retronomicon-sdl.git
