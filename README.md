@@ -3,6 +3,9 @@
 Retronomicon workspace repository for the core engine, optional gameplay
 modules, and selectable graphics/audio backends.
 
+For a concise handoff of what currently builds, what is scaffolded, and what
+should happen next, see `docs/status.md`.
+
 ## Layout
 
 - `retronomicon/`: backend-neutral engine core, public interfaces, and tests.
@@ -116,6 +119,19 @@ normal CMake builds.
 ```sh
 cmake --build build --target engine_tests
 cmake --build build --target retronomicon-conversation-tests
+```
+
+Backend smoke checks used for the current workspace state:
+
+```sh
+cmake -S . -B build-sdl -DRETRONOMICON_GRAPHICS_BACKEND=SDL
+cmake --build build-sdl --target retronomicon-sdl
+
+cmake -S . -B build-opengl -DRETRONOMICON_GRAPHICS_BACKEND=OPENGL
+cmake --build build-opengl --target retronomicon-opengl
+
+cmake -S . -B build-vulkan -DRETRONOMICON_GRAPHICS_BACKEND=VULKAN
+cmake --build build-vulkan --target retronomicon-vulkan
 ```
 
 ## Credits

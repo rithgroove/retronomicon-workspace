@@ -33,3 +33,7 @@ Recent commit history uses short, imperative, lowercase messages such as `update
 ## Assets & Configuration
 
 Keep asset paths stable because examples load paths under `asset/` directly. The conversation reference project is `~/Desktop/project-yuzu`; use its `asset/conversation/conversation.json`, `asset/conversation/characters.json`, and `sandbox-opengl/main_conv.cpp` as references. The active workspace example is `examples/conversation-console`, backed by `retronomicon/conversation/...`. The stale graphical conversation files under `retronomicon-conversation/src/lib/conversation/` are reference-only until a new adapter is built against current backend interfaces. Do not commit generated `build/`, `build-*`, or `build-aarch64/` outputs.
+
+## Current Handoff
+
+Read `docs/status.md` before making broad backend changes. It records the current build matrix, known audio dependency coupling, and the next recommended work.
