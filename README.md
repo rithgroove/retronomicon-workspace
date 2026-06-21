@@ -6,12 +6,12 @@ modules, and selectable graphics/audio backends.
 ## Layout
 
 - `retronomicon/`: backend-neutral engine core, public interfaces, and tests.
-- `retronomicon-sdl/`: SDL graphics, input, asset, and current SDL_mixer code.
-- `retronomicon-opengl/`: OpenGL/GLFW graphics and current OpenAL code.
+- `retronomicon-sdl/`: SDL window, renderer, texture, font asset, and raw input backend.
+- `retronomicon-opengl/`: OpenGL/GLFW window, renderer, texture, font asset, and raw input backend.
 - `retronomicon-vulkan/`: Vulkan backend scaffold using SDL for window/surface creation.
 - `retronomicon-directx/`: DirectX backend placeholder target.
-- `retronomicon-audio/`: audio backend selection scaffold.
-- `retronomicon-conversation/`: visual-novel style conversation module.
+- `retronomicon-audio/`: audio backend targets for SDL_mixer, OpenAL, and XAudio2 scaffold.
+- `retronomicon-conversation/`: backend-neutral visual-novel conversation data and traversal module.
 - `retronomicon-card-battle/`: card battle module.
 - `examples/conversation-console/`: backend-neutral conversation data example.
 - `sandbox/`: legacy sample app; opt in while it is migrated to backend-neutral APIs.
@@ -48,11 +48,21 @@ cmake -S . -B build-vulkan -DRETRONOMICON_GRAPHICS_BACKEND=VULKAN
 cmake -S . -B build-directx -DRETRONOMICON_GRAPHICS_BACKEND=DIRECTX
 ```
 
-Select an audio backend independently:
+Select an audio backend:
 
 ```sh
-cmake -S . -B build -DRETRONOMICON_AUDIO_BACKEND=OPENAL
+cmake -S . -B build-sdl-audio \
+  -DRETRONOMICON_GRAPHICS_BACKEND=SDL \
+  -DRETRONOMICON_AUDIO_BACKEND=SDL_MIXER
+
+cmake -S . -B build-openal \
+  -DRETRONOMICON_GRAPHICS_BACKEND=OPENGL \
+  -DRETRONOMICON_AUDIO_BACKEND=OPENAL
 ```
+
+`SDL_MIXER` currently requires the SDL submodule because SDL2_mixer is vendored
+there. `OPENAL` currently requires the OpenGL submodule because OpenAL is
+vendored there. `XAUDIO2` is still a target scaffold.
 
 Supported values are:
 
@@ -61,12 +71,12 @@ Supported values are:
 
 ## Optional Modules
 
-Legacy modules and examples are off by default:
+Legacy modules and examples are off by default, except the backend-neutral
+conversation library and console example:
 
 ```sh
 cmake -S . -B build \
   -DRETRONOMICON_GRAPHICS_BACKEND=SDL \
-  -DRETRONOMICON_BUILD_CONVERSATION=ON \
   -DRETRONOMICON_BUILD_CARD_BATTLE=ON \
   -DRETRONOMICON_BUILD_SANDBOX=ON
 ```
@@ -74,9 +84,10 @@ cmake -S . -B build \
 The current `sandbox/` code still uses older SDL-specific headers and needs API
 migration before it can serve as a backend-neutral example.
 
-The `retronomicon-conversation` graphical module is also legacy at the moment:
-it still includes the old `retronomicon/lib/...` API. Use
-`conversation-console` as the clean active example until that module is migrated.
+The stale graphical conversation scene files are retained in
+`retronomicon-conversation/src/lib/conversation/` for reference but are no
+longer part of the build. The active public API is
+`retronomicon/conversation/...`, with tests in `retronomicon-conversation/tests/`.
 
 ## Conversation Reference
 
@@ -86,22 +97,25 @@ The useful pieces are:
 - `asset/conversation/conversation.json`: node/background schema.
 - `asset/conversation/characters.json`: character database entry point.
 - `sandbox-opengl/main_conv.cpp`: minimal console traversal reference.
-- `examples/conversation-console/`: active workspace console traversal target.
+- `retronomicon-conversation/`: active conversation loader, validation, and traversal state.
+- `examples/conversation-console/`: active workspace console traversal target using the module API.
 - `sandbox/main.cpp` in this workspace: older graphical flow that loads
   characters, registers `ConversationCharacterModuleLoader`, loads conversation
   JSON as a text asset, and registers the scene.
 
-The next code step is to migrate `retronomicon-conversation` to the current
-core interfaces, then add a graphical `conversation-example` target that links
-the selected graphics/audio backends.
+The next code step is to add a graphical `conversation-example` target that
+adapts `ConversationDocument` and `ConversationState` to the selected
+graphics/audio backends.
 
 ## Verification
 
-The core engine uses Catch2 tests in `retronomicon/tests/`. They build as
-`engine_tests` and run during normal CMake builds.
+The core engine uses Catch2 tests in `retronomicon/tests/`. The conversation
+module has Catch2 tests in `retronomicon-conversation/tests/`. Both run during
+normal CMake builds.
 
 ```sh
 cmake --build build --target engine_tests
+cmake --build build --target retronomicon-conversation-tests
 ```
 
 ## Credits

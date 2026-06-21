@@ -17,7 +17,7 @@ set_property(CACHE RETRONOMICON_GRAPHICS_BACKEND PROPERTY STRINGS NONE SDL OPENG
 set(RETRONOMICON_AUDIO_BACKEND "NONE" CACHE STRING "Audio backend: NONE, SDL_MIXER, OPENAL, XAUDIO2")
 set_property(CACHE RETRONOMICON_AUDIO_BACKEND PROPERTY STRINGS NONE SDL_MIXER OPENAL XAUDIO2)
 
-option(RETRONOMICON_BUILD_CONVERSATION "Build the legacy conversation module" OFF)
+option(RETRONOMICON_BUILD_CONVERSATION "Build the backend-neutral conversation module" ON)
 option(RETRONOMICON_BUILD_CARD_BATTLE "Build the legacy card battle module" OFF)
 option(RETRONOMICON_BUILD_SANDBOX "Build the legacy sandbox executable" OFF)
 option(RETRONOMICON_BUILD_CONVERSATION_EXAMPLE "Build the backend-neutral conversation console example" ON)
@@ -57,7 +57,7 @@ if(NOT RETRONOMICON_AUDIO_BACKEND STREQUAL "NONE")
     endif()
 endif()
 
-if(RETRONOMICON_BUILD_CONVERSATION)
+if(RETRONOMICON_BUILD_CONVERSATION OR RETRONOMICON_BUILD_CONVERSATION_EXAMPLE)
     add_subdirectory(retronomicon-conversation retronomicon_conversation_build)
 endif()
 

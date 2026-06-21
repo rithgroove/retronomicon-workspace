@@ -4,7 +4,7 @@ add_executable(conversation-console
 
 target_link_libraries(conversation-console
     PRIVATE
-        nlohmann_json::nlohmann_json
+        retronomicon-conversation
 )
 
 target_compile_definitions(conversation-console
