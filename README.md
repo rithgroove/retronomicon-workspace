@@ -1,40 +1,115 @@
 # retronomicon-workspace
-reronomicon-workspace
 
-This is the workspace for restronomicon.
+Retronomicon workspace repository for the core engine, optional gameplay
+modules, and selectable graphics/audio backends.
 
-# How to use
+## Layout
 
-## Select the branch
-
-Currently main branch is focused on developing retronomicon-platformer (The platformer engine using retronomicon lib). Once the dev is done, there will be a new release branch called "platformer"  and the main branch will be emptied.
-
-
-## Load all library
-
-```
-run init.sh
-```
+- `retronomicon/`: backend-neutral engine core, public interfaces, and tests.
+- `retronomicon-sdl/`: SDL graphics, input, asset, and current SDL_mixer code.
+- `retronomicon-opengl/`: OpenGL/GLFW graphics and current OpenAL code.
+- `retronomicon-vulkan/`: Vulkan backend scaffold using SDL for window/surface creation.
+- `retronomicon-directx/`: DirectX backend placeholder target.
+- `retronomicon-audio/`: audio backend selection scaffold.
+- `retronomicon-conversation/`: visual-novel style conversation module.
+- `retronomicon-card-battle/`: card battle module.
+- `examples/conversation-console/`: backend-neutral conversation data example.
+- `sandbox/`: legacy sample app; opt in while it is migrated to backend-neutral APIs.
+- `asset/`: shared runtime assets for examples.
 
 ## Build
 
-```
-run build-sandbox.sh
-```
+Initialize submodules first:
 
-## Run
-
-```
-run play.sh
+```sh
+git submodule update --init --recursive
 ```
 
-# Credits:
+Default core-only build:
 
-- [Font] Manaspace from Cody Boisclair "codeman38" [Link](https://www.zone38.net/font/)
-- [Sprite] Building2 (City Mega Pack) by  GrafxKid [Link](https://opengameart.org/content/city-mega-pack)
-- [Sprite] Miho by rithgroove & ceteee21
-- [Sound] Funny Swish (funny-swish-101878.mp3) by Freesound Community [Link](https://pixabay.com/sound-effects/funny-swish-101878/)
-- [Sound] Background Music (best-background-music-no-copyright-244084.mp3) by DesiFreeMusic [Link](https://pixabay.com/music/beats-best-background-music-no-copyright-244084/)
-- [UI] 9 Slice menu asset by Kenney [Link](https://www.kenney.nl/assets/pixel-ui-pack)
-- [Background] Free Visual Novel Background By Potato Master [Link](https://potat0master.itch.io/free-visual-novel-backgrounds-school-mini-pack-1)
-- Special thanks to Dov Grobgeld [dov](https://github.com/dov) for his example repository. 
+```sh
+cmake -S . -B build
+cmake --build build
+```
+
+Run the conversation data example:
+
+```sh
+cmake --build build --target conversation-console
+./build/bin/conversation-console
+```
+
+Select a graphics backend:
+
+```sh
+cmake -S . -B build-sdl -DRETRONOMICON_GRAPHICS_BACKEND=SDL
+cmake -S . -B build-opengl -DRETRONOMICON_GRAPHICS_BACKEND=OPENGL
+cmake -S . -B build-vulkan -DRETRONOMICON_GRAPHICS_BACKEND=VULKAN
+cmake -S . -B build-directx -DRETRONOMICON_GRAPHICS_BACKEND=DIRECTX
+```
+
+Select an audio backend independently:
+
+```sh
+cmake -S . -B build -DRETRONOMICON_AUDIO_BACKEND=OPENAL
+```
+
+Supported values are:
+
+- `RETRONOMICON_GRAPHICS_BACKEND`: `NONE`, `SDL`, `OPENGL`, `VULKAN`, `DIRECTX`
+- `RETRONOMICON_AUDIO_BACKEND`: `NONE`, `SDL_MIXER`, `OPENAL`, `XAUDIO2`
+
+## Optional Modules
+
+Legacy modules and examples are off by default:
+
+```sh
+cmake -S . -B build \
+  -DRETRONOMICON_GRAPHICS_BACKEND=SDL \
+  -DRETRONOMICON_BUILD_CONVERSATION=ON \
+  -DRETRONOMICON_BUILD_CARD_BATTLE=ON \
+  -DRETRONOMICON_BUILD_SANDBOX=ON
+```
+
+The current `sandbox/` code still uses older SDL-specific headers and needs API
+migration before it can serve as a backend-neutral example.
+
+The `retronomicon-conversation` graphical module is also legacy at the moment:
+it still includes the old `retronomicon/lib/...` API. Use
+`conversation-console` as the clean active example until that module is migrated.
+
+## Conversation Reference
+
+`~/Desktop/project-yuzu` is the reference project for the conversation engine.
+The useful pieces are:
+
+- `asset/conversation/conversation.json`: node/background schema.
+- `asset/conversation/characters.json`: character database entry point.
+- `sandbox-opengl/main_conv.cpp`: minimal console traversal reference.
+- `examples/conversation-console/`: active workspace console traversal target.
+- `sandbox/main.cpp` in this workspace: older graphical flow that loads
+  characters, registers `ConversationCharacterModuleLoader`, loads conversation
+  JSON as a text asset, and registers the scene.
+
+The next code step is to migrate `retronomicon-conversation` to the current
+core interfaces, then add a graphical `conversation-example` target that links
+the selected graphics/audio backends.
+
+## Verification
+
+The core engine uses Catch2 tests in `retronomicon/tests/`. They build as
+`engine_tests` and run during normal CMake builds.
+
+```sh
+cmake --build build --target engine_tests
+```
+
+## Credits
+
+- Font: Manaspace by Cody Boisclair.
+- Sprite: Building2 from City Mega Pack by GrafxKid.
+- Sprite: Miho by rithgroove and ceteee21.
+- Sound: Funny Swish by Freesound Community.
+- Sound: Background Music by DesiFreeMusic.
+- UI: 9 Slice menu asset by Kenney.
+- Background: Free Visual Novel Background by Potato Master.

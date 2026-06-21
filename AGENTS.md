@@ -2,25 +2,28 @@
 
 ## Project Structure & Module Organization
 
-This repository is a C++17 CMake workspace for Retronomicon modules. The root `CMakeLists.txt` builds the base engine in `retronomicon/`, feature modules in `retronomicon-conversation/` and `retronomicon-card-battle/`, and the runnable `sandbox/` target. Public headers live under each module's `include/` tree, with implementations under `src/`. Shared runtime data is in `asset/`, including cards, decks, conversations, fonts, and audio. Cross-build toolchains are in `ToolChain/`. Treat `retronomicon/external/` as vendored dependency code unless intentionally updating third-party libraries.
+This repository is a C++17 CMake workspace for Retronomicon modules. The base engine lives in `retronomicon/`. Graphics backends live in `retronomicon-sdl/`, `retronomicon-opengl/`, `retronomicon-vulkan/`, and `retronomicon-directx/`; audio backend selection lives in `retronomicon-audio/`. Gameplay modules live in `retronomicon-conversation/`, `retronomicon-card-battle/`, and `retronomicon-platformer/`. Active examples live under `examples/`; legacy experiments live under `sandbox/`. Public headers live under each module's `include/` tree, with implementations under `src/`. Shared runtime data is in `asset/`. Treat `external/` folders as vendored dependency code unless intentionally updating third-party libraries.
 
 ## Build, Test, and Development Commands
 
-- `./init.sh`: initializes submodules and installs Linux SDL/font/audio dependencies with `apt`.
-- `./build-sandbox.sh`: configures `build/`, builds the workspace, and copies `asset/` into `build/sandbox/`.
-- `./play.sh`: runs `./build/sandbox/sandbox`.
-- `./clean.sh`: removes generated build directories.
-- `./build-arkos.sh`: cross-builds with `ToolChain/TC-arkos.cmake` into `build-aarch64/`.
+- `git submodule update --init --recursive`: initializes workspace and backend dependencies.
+- `cmake -S . -B build && cmake --build build`: builds the backend-neutral core and runs core tests.
+- `cmake -S . -B build-sdl -DRETRONOMICON_GRAPHICS_BACKEND=SDL`: configures with the SDL backend.
+- `cmake -S . -B build-opengl -DRETRONOMICON_GRAPHICS_BACKEND=OPENGL`: configures with the OpenGL backend.
+- `cmake -S . -B build-vulkan -DRETRONOMICON_GRAPHICS_BACKEND=VULKAN`: configures with the Vulkan backend.
+- `cmake -S . -B build -DRETRONOMICON_AUDIO_BACKEND=OPENAL`: selects an audio backend independently.
+- `cmake --build build --target conversation-console`: builds the backend-neutral conversation data example.
+- `./build/bin/conversation-console`: runs the default `asset/conversation/conversation.json` traversal.
 
-For manual builds, use `cmake -S . -B build` and `cmake --build build`.
+Use `RETRONOMICON_BUILD_CONVERSATION=ON`, `RETRONOMICON_BUILD_CARD_BATTLE=ON`, or `RETRONOMICON_BUILD_SANDBOX=ON` only when intentionally building legacy modules/examples.
 
 ## Coding Style & Naming Conventions
 
-Use C++17 and match the surrounding style. Source and header filenames use lowercase snake case, for example `conversation_loader.cpp` and `battle_state_machine.h`. Types use PascalCase, functions and variables use lower camelCase, and namespaces follow the existing nested pattern such as `retronomicon::lib::conversation`. Prefer 4-space indentation in C++ files. Keep module APIs in `include/` and implementation details in `src/`.
+Use C++17 and match the surrounding style. Source and header filenames use lowercase snake case, for example `conversation_loader.cpp` and `battle_state_machine.h`. Types use PascalCase, functions and variables use lower camelCase, and namespaces follow the owning module, such as `retronomicon::lib::conversation` or `retronomicon::opengl`. Prefer 4-space indentation in C++ files. Keep module APIs in `include/` and implementation details in `src/`.
 
 ## Testing Guidelines
 
-The base engine uses Catch2 tests in `retronomicon/tests/`. Test files follow `test_*.cpp`; add focused cases with `TEST_CASE("behavior", "[tag]")`. The `engine_tests` target is built from these files and runs after build through CMake. Run `./build-sandbox.sh` for the normal verification path, or run `./build/bin/engine_tests` after configuring manually.
+The base engine uses Catch2 tests in `retronomicon/tests/`. Test files follow `test_*.cpp`; add focused cases with `TEST_CASE("behavior", "[tag]")`. The `engine_tests` target is built from these files and runs during normal CMake builds. For backend changes, verify at least the touched backend target, for example `cmake --build build-vulkan --target retronomicon-vulkan`.
 
 ## Commit & Pull Request Guidelines
 
@@ -28,4 +31,4 @@ Recent commit history uses short, imperative, lowercase messages such as `update
 
 ## Assets & Configuration
 
-Keep asset paths stable because runtime code expects copied `asset/` content beside the sandbox binary. Do not commit generated `build/` or `build-aarch64/` outputs.
+Keep asset paths stable because examples load paths under `asset/` directly. The conversation reference project is `~/Desktop/project-yuzu`; use its `asset/conversation/conversation.json`, `asset/conversation/characters.json`, and `sandbox-opengl/main_conv.cpp` as references. The active workspace example is `examples/conversation-console`; the graphical `retronomicon-conversation` module still needs migration from old `retronomicon/lib/...` includes. Do not commit generated `build/`, `build-*`, or `build-aarch64/` outputs.

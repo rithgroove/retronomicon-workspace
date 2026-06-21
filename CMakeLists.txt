@@ -7,6 +7,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 set(RETRONOMICON_GRAPHICS_BACKEND "NONE" CACHE STRING "Graphics backend: NONE, SDL, OPENGL, VULKAN, DIRECTX")
 set_property(CACHE RETRONOMICON_GRAPHICS_BACKEND PROPERTY STRINGS NONE SDL OPENGL VULKAN DIRECTX)
@@ -17,6 +20,7 @@ set_property(CACHE RETRONOMICON_AUDIO_BACKEND PROPERTY STRINGS NONE SDL_MIXER OP
 option(RETRONOMICON_BUILD_CONVERSATION "Build the legacy conversation module" OFF)
 option(RETRONOMICON_BUILD_CARD_BATTLE "Build the legacy card battle module" OFF)
 option(RETRONOMICON_BUILD_SANDBOX "Build the legacy sandbox executable" OFF)
+option(RETRONOMICON_BUILD_CONVERSATION_EXAMPLE "Build the backend-neutral conversation console example" ON)
 
 # Build retronomicon base engine
 add_subdirectory(retronomicon retronomicon_build)
@@ -63,6 +67,10 @@ endif()
 
 if(RETRONOMICON_BUILD_SANDBOX)
     add_subdirectory(sandbox)
+endif()
+
+if(RETRONOMICON_BUILD_CONVERSATION_EXAMPLE)
+    add_subdirectory(examples/conversation-console)
 endif()
 
 message(STATUS "Retronomicon graphics backend: ${RETRONOMICON_GRAPHICS_BACKEND}")
