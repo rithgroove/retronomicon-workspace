@@ -1,4 +1,9 @@
 message(STATUS "==== Processing ${CMAKE_CURRENT_LIST_FILE} ====")
+
+if(NOT RETRONOMICON_GRAPHICS_TARGET)
+    message(FATAL_ERROR "sandbox requires RETRONOMICON_GRAPHICS_BACKEND to select a graphics backend")
+endif()
+
 # Executable target
 add_executable(sandbox
     main.cpp
@@ -6,7 +11,20 @@ add_executable(sandbox
 )
 
 # Link against the full retronomicon engine
-target_link_libraries(sandbox retronomicon retronomicon-conversation retronomicon-card-battle)
+target_link_libraries(sandbox
+    PRIVATE
+        retronomicon
+        ${RETRONOMICON_GRAPHICS_TARGET}
+        ${RETRONOMICON_AUDIO_TARGET}
+)
+
+if(TARGET retronomicon-conversation)
+    target_link_libraries(sandbox PRIVATE retronomicon-conversation)
+endif()
+
+if(TARGET retronomicon-card-battle)
+    target_link_libraries(sandbox PRIVATE retronomicon-card-battle)
+endif()
 
 # Include the engine's public headers
 #target_include_directories(sandbox

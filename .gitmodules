@@ -13,3 +13,15 @@
 [submodule "retronomicon-sdl"]
 	path = retronomicon-sdl
 	url = git@github.com:rithgroove/retronomicon-sdl.git
+[submodule "retronomicon-opengl"]
+	path = retronomicon-opengl
+	url = git@github.com:rithgroove/retronomicon-opengl.git
+[submodule "retronomicon-vulkan"]
+	path = retronomicon-vulkan
+	url = git@github.com:rithgroove/retronomicon-vulkan.git
+[submodule "retronomicon-directx"]
+	path = retronomicon-directx
+	url = git@github.com:rithgroove/retronomicon-directx.git
+[submodule "retronomicon-audio"]
+	path = retronomicon-audio
+	url = git@github.com:rithgroove/retronomicon-audio.git
